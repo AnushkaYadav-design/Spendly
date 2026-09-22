@@ -15,4 +15,4 @@
 .cxx
 local.properties
 .env
-debug.keystore
+# debug.keystore is tracked so GitHub Actions and CI can sign debug APKs
