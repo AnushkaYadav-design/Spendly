@@ -1,0 +1,6 @@
+{
+  "name": "Spendly",
+  "description": "Smart personal finance manager and student expense tracker.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

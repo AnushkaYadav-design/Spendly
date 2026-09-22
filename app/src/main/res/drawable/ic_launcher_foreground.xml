@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Wallet Card Shape -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M28,32h52c3.3,0 6,2.7 6,6v32c0,3.3 -2.7,6 -6,6H28c-3.3,0 -6,-2.7 -6,-6V38C22,34.7 24.7,32 28,32z" />
+    <!-- Wallet Upper Fold Line Accent -->
+    <path
+        android:fillColor="#047857"
+        android:pathData="M22,40h64v4H22z" />
+    <!-- Wallet Flap with Clasp -->
+    <path
+        android:fillColor="#047857"
+        android:pathData="M62,45h24v18h-24c-5,0 -9,-4 -9,-9s4,-9 9,-9z" />
+    <!-- Gold Coin / Clasp on Flap -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M74,50c2.2,0 4,1.8 4,4s-1.8,4 -4,4s-4,-1.8 -4,-4s1.8,-4 4,-4z" />
+    <!-- Rupee / Finance Symbol on Wallet Body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,47h14v3h-14zM38,53h11v3h-11zM42,50h8c2.2,0 4,1.8 4,4s-1.8,4 -4,4h-8v6h-3V47h3zM42,55h6c0.6,0 1,-0.4 1,-1s-0.4,-1 -1,-1h-6v2zM47,58l6,9h-4l-5.5,-8.5L47,58z" />
+</vector>
+

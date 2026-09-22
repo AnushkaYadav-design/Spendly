@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spendly - Personal Finance & Expense Tracker</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23059669'/%3E%3Crect x='5' y='8' width='22' height='16' rx='3' fill='%2310b981'/%3E%3Cpath d='M5 11h22' stroke='%23047857' stroke-width='2'/%3E%3Cpath d='M19 13h8v6h-8a3 3 0 0 1-3-3v0a3 3 0 0 1 3-3z' fill='%23047857'/%3E%3Ccircle cx='23.5' cy='16' r='1.2' fill='%23fbbf24'/%3E%3Ctext x='11.5' y='19' font-size='8.5' font-weight='900' fill='%23ffffff' text-anchor='middle' font-family='system-ui, -apple-system, sans-serif'%3E₹%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-area" aria-label="Spendly Logo">
+        <div class="logo-icon" aria-hidden="true">
+          <!-- Spendly Custom Wallet + ₹ Logo (Inline SVG) -->
+          <svg class="spendly-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="44" height="44" rx="12" fill="url(#spendly-grad)"/>
+            <!-- Wallet Main Body -->
+            <rect x="7" y="11" width="30" height="22" rx="4.5" fill="#10B981"/>
+            <!-- Wallet Upper Fold Stitch Accent -->
+            <path d="M7 15.5H37" stroke="#047857" stroke-width="2"/>
+            <!-- Wallet Flap Pocket -->
+            <path d="M26 18H37V26H26C23.7909 26 22 24.2091 22 22C22 19.7909 23.7909 18 26 18Z" fill="#047857"/>
+            <!-- Gold Clasp / Savings Coin Accent -->
+            <circle cx="31.5" cy="22" r="1.8" fill="#FBBF24"/>
+            <!-- Indian Rupee Symbol inside Wallet -->
+            <text x="15.5" y="25" font-size="11" font-weight="900" fill="#FFFFFF" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">₹</text>
+            <!-- Gradient Definition -->
+            <defs>
+              <linearGradient id="spendly-grad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#059669"/>
+                <stop offset="0.5" stop-color="#10B981"/>
+                <stop offset="1" stop-color="#047857"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>Spendly</h1>
+          <span class="tagline">Student Finance Tracker</span>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="welcome-badge">
+          <span class="greeting-icon">👋</span>
+          <div class="greeting-content">
+            <span class="greeting-title" id="greetingText">Welcome, Student!</span>
+            <span class="current-date" id="currentDate">Saturday, Sep 19, 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- Quick Student Banner -->
+    <section class="banner-card">
+      <div class="banner-content">
+        <h2>Smart budgeting made simple for campus life</h2>
+        <p>Keep track of your pocket money, canteen meals, transit, and semester expenses in one place with Spendly.</p>
+      </div>
+      <div class="quick-adds" aria-label="Quick Add Shortcuts">
+        <span class="quick-label">Quick Add:</span>
+        <button type="button" class="chip-btn" data-name="Campus Canteen Meal" data-amount="120" data-type="Expense" data-cat="Food">🍔 Canteen ₹120</button>
+        <button type="button" class="chip-btn" data-name="Metro & Bus Pass" data-amount="500" data-type="Expense" data-cat="Transport">🚌 Metro ₹500</button>
+        <button type="button" class="chip-btn" data-name="Study Material & Print" data-amount="250" data-type="Expense" data-cat="Education">📚 Books ₹250</button>
+        <button type="button" class="chip-btn" data-name="Monthly Allowance" data-amount="10000" data-type="Income" data-cat="Salary">💰 Allowance ₹10,000</button>
+      </div>
+    </section>
+
+    <!-- Dashboard Section Header with Spendly Branding -->
+    <div class="dashboard-header-bar">
+      <div class="dashboard-branding">
+        <svg class="dashboard-logo-badge" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="28" height="28" rx="8" fill="#059669"/>
+          <rect x="4.5" y="7" width="19" height="14" rx="3" fill="#10B981"/>
+          <path d="M4.5 10H23.5" stroke="#047857" stroke-width="1.5"/>
+          <path d="M16.5 11.5H23.5V16.5H16.5C15.1193 16.5 14 15.3807 14 14C14 12.6193 15.1193 11.5 16.5 11.5Z" fill="#047857"/>
+          <circle cx="20" cy="14" r="1.1" fill="#FBBF24"/>
+          <text x="10" y="16.5" font-size="7.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" font-family="system-ui, sans-serif">₹</text>
+        </svg>
+        <h2 class="dashboard-title">Financial Dashboard Overview</h2>
+      </div>
+      <span class="dashboard-tag">Live Summary</span>
+    </div>
+
+    <!-- 1. DASHBOARD OVERVIEW -->
+    <section class="dashboard-grid" aria-label="Financial Dashboard Overview">
+      <!-- Balance Card -->
+      <div class="stat-card balance-card">
+        <div class="stat-header">
+          <span class="stat-title">Total Balance</span>
+          <div class="stat-icon balance-icon">💼</div>
+        </div>
+        <div class="stat-value" id="totalBalance">₹0</div>
+        <div class="stat-caption" id="balanceStatus">Calculated as: Income - Expenses</div>
+      </div>
+
+      <!-- Income Card -->
+      <div class="stat-card income-card">
+        <div class="stat-header">
+          <span class="stat-title">Total Income</span>
+          <div class="stat-icon income-icon">📈</div>
+        </div>
+        <div class="stat-value" id="totalIncome">₹0</div>
+        <div class="stat-caption" id="incomeCount">0 income sources</div>
+      </div>
+
+      <!-- Expense Card -->
+      <div class="stat-card expense-card">
+        <div class="stat-header">
+          <span class="stat-title">Total Expenses</span>
+          <div class="stat-icon expense-icon">📉</div>
+        </div>
+        <div class="stat-value" id="totalExpenses">₹0</div>
+        <div class="stat-caption" id="expenseRatio">0% of total income spent</div>
+      </div>
+
+      <!-- Transactions Count Card -->
+      <div class="stat-card count-card">
+        <div class="stat-header">
+          <span class="stat-title">Total Transactions</span>
+          <div class="stat-icon count-icon">📝</div>
+        </div>
+        <div class="stat-value" id="totalTransactions">0</div>
+        <div class="stat-caption" id="transactionsCaption">All recorded activities</div>
+      </div>
+    </section>
+
+    <!-- Layout Columns: Form on Left, Category Insights & List on Right -->
+    <div class="content-grid">
+      <!-- 2. ADD & EDIT TRANSACTION FORM -->
+      <aside class="form-section">
+        <div class="panel-card" id="formCard">
+          <div class="panel-header">
+            <h2 id="formTitle">Add Transaction</h2>
+            <span class="edit-pill" id="editIndicator" style="display: none;">Editing Mode</span>
+          </div>
+
+          <form id="transactionForm" novalidate>
+            <input type="hidden" id="editTransactionId" value="">
+
+            <!-- Transaction Name -->
+            <div class="form-group">
+              <label for="transactionName">Transaction Name <span class="req">*</span></label>
+              <input 
+                type="text" 
+                id="transactionName" 
+                name="transactionName" 
+                placeholder="e.g. Canteen Lunch, Semester Books" 
+                required 
+                autocomplete="off"
+              >
+              <span class="error-msg" id="nameError">Please enter a valid transaction name</span>
+            </div>
+
+            <!-- Amount -->
+            <div class="form-group">
+              <label for="transactionAmount">Amount (₹) <span class="req">*</span></label>
+              <div class="input-currency-wrapper">
+                <span class="currency-symbol">₹</span>
+                <input 
+                  type="number" 
+                  id="transactionAmount" 
+                  name="transactionAmount" 
+                  placeholder="0.00" 
+                  min="0.01" 
+                  step="any" 
+                  required
+                >
+              </div>
+              <span class="error-msg" id="amountError">Please enter an amount greater than 0</span>
+            </div>
+
+            <!-- Type Selector: Income / Expense -->
+            <div class="form-group">
+              <label>Transaction Type <span class="req">*</span></label>
+              <div class="type-toggle-group">
+                <label class="type-option type-expense selected">
+                  <input type="radio" name="transactionType" value="Expense" checked>
+                  <span class="radio-custom"></span>
+                  <span class="type-label">📉 Expense</span>
+                </label>
+                <label class="type-option type-income">
+                  <input type="radio" name="transactionType" value="Income">
+                  <span class="radio-custom"></span>
+                  <span class="type-label">📈 Income</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Category Dropdown -->
+            <div class="form-group">
+              <label for="transactionCategory">Category <span class="req">*</span></label>
+              <select id="transactionCategory" name="transactionCategory" required>
+                <option value="" disabled selected>Select category...</option>
+                <option value="Food">🍔 Food</option>
+                <option value="Transport">🚌 Transport</option>
+                <option value="Education">📚 Education</option>
+                <option value="Shopping">🛍️ Shopping</option>
+                <option value="Bills">💡 Bills</option>
+                <option value="Entertainment">🎬 Entertainment</option>
+                <option value="Health">🩺 Health</option>
+                <option value="Salary">💼 Salary</option>
+                <option value="Other">📌 Other</option>
+              </select>
+              <span class="error-msg" id="categoryError">Please select a category</span>
+            </div>
+
+            <!-- Date -->
+            <div class="form-group">
+              <label for="transactionDate">Date <span class="req">*</span></label>
+              <input type="date" id="transactionDate" name="transactionDate" required>
+              <span class="error-msg" id="dateError">Please choose a valid date</span>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                <span class="btn-icon">➕</span>
+                <span id="submitBtnText">Add Transaction</span>
+              </button>
+              <button type="button" class="btn btn-secondary" id="cancelEditBtn" style="display: none;">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Category Breakdown Card -->
+        <div class="panel-card category-insights">
+          <div class="panel-header">
+            <h3>Spending by Category</h3>
+          </div>
+          <div id="categoryBreakdownContainer" class="category-list">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- 3. TRANSACTION LIST, SEARCH & FILTERS -->
+      <section class="list-section">
+        <div class="panel-card">
+          <!-- Controls Bar -->
+          <div class="controls-wrapper">
+            <!-- 7. SEARCH -->
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search by name or category..." 
+                aria-label="Search transactions"
+                autocomplete="off"
+              >
+              <button type="button" id="clearSearchBtn" class="clear-search-btn" title="Clear search" style="display: none;">✕</button>
+            </div>
+
+            <!-- 8. FILTERS -->
+            <div class="filter-controls">
+              <!-- Type Filter -->
+              <div class="filter-group">
+                <label for="typeFilter" class="filter-label">Type:</label>
+                <select id="typeFilter" class="filter-select">
+                  <option value="All">All Types</option>
+                  <option value="Income">📈 Income</option>
+                  <option value="Expense">📉 Expense</option>
+                </select>
+              </div>
+
+              <!-- Category Filter -->
+              <div class="filter-group">
+                <label for="categoryFilter" class="filter-label">Category:</label>
+                <select id="categoryFilter" class="filter-select">
+                  <option value="All">All Categories</option>
+                  <option value="Food">Food</option>
+                  <option value="Transport">Transport</option>
+                  <option value="Education">Education</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Health">Health</option>
+                  <option value="Salary">Salary</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- Reset Filters -->
+              <button type="button" id="resetFiltersBtn" class="btn btn-ghost" title="Reset filters">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Filter Pill Status -->
+          <div class="filter-status-bar" id="filterStatusBar" style="display: none;">
+            <span id="filterSummaryText">Showing results</span>
+            <button type="button" class="btn-link" id="clearAllFiltersLink">Clear all filters</button>
+          </div>
+
+          <!-- 3. TABLE / LIST -->
+          <div class="table-container">
+            <table class="transaction-table" id="transactionTable">
+              <thead>
+                <tr>
+                  <th>Transaction</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th class="text-right">Amount</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="transactionListBody">
+                <!-- Injected via script.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State Container -->
+          <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">💸</div>
+            <h3 id="emptyStateTitle">No transactions yet</h3>
+            <p id="emptyStateMessage">No transactions yet. Add your first transaction!</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 5. CONFIRMATION MODAL -->
+  <div class="modal-backdrop" id="deleteModal" style="display: none;">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-icon-badge">🗑️</div>
+      <h3 id="modalTitle">Confirm Deletion</h3>
+      <p id="modalDesc">Are you sure you want to delete this transaction? This action cannot be undone.</p>
+      <div class="modal-transaction-preview" id="deletePreviewInfo"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastNotification" role="alert" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-branding">
+      <span class="footer-logo-text">Spendly</span> • Built for College Students • All calculations computed locally (Income - Expenses)
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
